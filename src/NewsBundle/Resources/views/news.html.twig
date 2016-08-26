@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Doctyrine News - liste</title>
+             <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" type="text/css" media="all" />
+    </head>
+    <body>
+        {# 
+            Ce Template a recu la liste des News sous forme d'un liste d'objet news
+            ceci est donc une boucle for qui dit :
+            pour chaque nouvelle dans la liste news (en gros on va passer sur tous les objets de la liste
+            on affiche pour chaque passage dans la boucle les propriétés
+        
+        #}
+        {%for nouvelle in news%}
+            <p>{{nouvelle.titre}}</p>
+            <p>{{nouvelle.sujet}}</p>
+            <p>{{nouvelle.date}}</p>
+        {% endfor %}
+        {# J'ai mis un petit lien qui va appeler la methode qui va afficher la page d'ajout de news #}
+        <a href="{{path("valid")}}">ajouter une news </a>
+    </body>
+
+</html>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Doctyrine News</title>
+             <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" type="text/css" media="all" />
+    </head>
+    <body>
+        {#
+            formulaire pour l'ajout des news
+            J'ai simplifié au max pour tenté d'etre le plus clair ;)
+            Bien sur dans ce template on a renvoyé le formulaire que nous avions créé dans la methode formNews()
+            
+        #}
+        {#{{form(formNews)}}#}
+        
+        {# 
+            cette methode crée la balise form , on decide que dès qu'on valide le formulaire on appele la fonction 
+            addNews() par son alias 'valid' 
+        
+        #}
+        {{form_start(formNews,{'attr':{'action':path('valid')}})}}
+        {# ici on afiche tous les champs qui restent a afficher #}
+        {{form_rest(formNews)}}
+        {# en gros on ferme la balise form #}
+        {{form_end(formNews)}}
+        
+    </body>
+
+</html>
