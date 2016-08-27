@@ -8,11 +8,11 @@ right-click project -> composer -> install (dev)
 Mise en place du projet des news afin d'avoir un exemple de gestion de donnéees variables  
 dont la persistance est effectuée en base de données  
 
-Points abordés :
-    * generation d'entité via console
-    * création de la table via cnosole
-    * formulaire de création de news
-    * affichage de toutes les entrées de la table
+Points abordés :  
+    * generation d'entité via console  
+    * création de la table via cnosole  
+    * formulaire de création de news  
+    * affichage de toutes les entrées de la table  
 
 ---
 
@@ -21,9 +21,9 @@ Points abordés :
 Mise en place du pattern DAO avec un accent sur le polymorphisme et sa puissance conceptuelle  
 Utilisation du DAO comme un service  
 
-Points abordés :
-    * Implementation du CRUD
-    * Notions de classes Abstraites / Concretes
-    * Ajout des services et pourquoi 
-    * Notions de binding (pour lancer la branche suivante) avec le "shadow" formulaire
-    * Overide de méthodes / Dépréciation  
+Points abordés :  
+    * Implementation du CRUD  
+    * Notions de classes Abstraites / Concretes  
+    * Ajout des services et pourquoi   
+    * Notions de binding (pour lancer la branche suivante) avec le "shadow" formulaire  
+    * Overide de méthodes / Dépréciation   
