@@ -112,4 +112,29 @@ class NewsController extends Controller {
         $this->container->get("news.dao")->delete($this->container->get("news.dao")->get($id));
         return $this->redirect($this->generateUrl('news'));
     }
+    
+    /**
+     * En gros c'est la même chose que lorsque qu'on demande la vue d'ajout de news
+     * a part que là on recupere la news en DB grace a l'id passé dans l'URL
+     * @Route("/news/edit/{id}",name="edit")
+     * @Template("NewsBundle::addNews.html.twig")
+     * @param type $id
+     */
+    public function editNews($id){
+        //on recupère la news
+        $niouse = $this->container->get("news.dao")->get($id);
+        //on lie un formulaire avec l'objet créé
+        $formBuilder = $this->createFormBuilder($niouse);
+        //chaque champs du formulaire sera "lié" a notre classe
+        $formBuilder->add("date");
+        $formBuilder->add("titre");
+        $formBuilder->add("sujet");
+        $formBuilder->add("auteur");
+        //petit bouton submit pour valider le formulaire
+        $formBuilder->add("save", SubmitType::class);
+        //après avoir "fabriqué" (build) le formulaire on le génère....
+        $f = $formBuilder->getForm();
+        //on renvoie le formulaire dans la vue
+        return array("formNews" => $f->createView());    
+    }
 }

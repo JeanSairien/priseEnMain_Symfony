@@ -19,14 +19,16 @@
         <a href="{{path("valid")}}">ajouter une news </a>    
         {%for nouvelle in news%}
             
-           
-                <h1 class="col-xs-12">
+            <div class="col-xs-12 news">
+                <h3 >
                     <span class="col-xs-6">{{nouvelle.date}}</span>
                     <span class="col-xs-2">{{nouvelle.titre}}</span>
-                </h1>
-                <span class="col-xs-12 ">{{nouvelle.sujet}}{{nouvelle.auteur}}</span>
-                <span class="col-xs-12 col-xs-offset-0 fin"><a class="col-xs-push-5" href="{{path("delete",{"id":nouvelle.id})}}">supprimer</a></span>
-        
+                </h3>
+                <span class="col-xs-12 ">{{nouvelle.sujet}}</span>
+                <span class="col-xs-12 text-right">{{nouvelle.auteur}}</span>
+                <span class="col-xs-6 col-xs-offset-0 text-left"><a class="col-xs-push-5" href="{{path("edit",{"id":nouvelle.id})}}">modifier</a></span>
+                <span class="col-xs-6 col-xs-offset-0 text-right"><a class="col-xs-push-5" href="{{path("delete",{"id":nouvelle.id})}}">supprimer</a></span>
+            </div>
             
         {% endfor %}
         
