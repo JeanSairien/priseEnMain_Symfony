@@ -156,6 +156,15 @@ class News
         return $this->date;
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * En préambule de l'insertion d'une approche personnelle conceptuelle 
      * Fonctionne de concert avec une fabrique d'objet qui recuperera l'entityManager
