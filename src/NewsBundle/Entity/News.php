@@ -161,6 +161,7 @@ class News
      * Fonctionne de concert avec une fabrique d'objet qui recuperera l'entityManager
      * afin de generer la persistance... la puissance réside dans le polymorphisme
      * @param type $em
+     * @deprecated since version 0.9
      */
     public function save($em) {
         $em->persist($this);
