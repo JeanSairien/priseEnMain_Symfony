@@ -2,3 +2,6 @@ services:
 #    news.example:
 #        class: NewsBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
+    news.dao:
+        class: NewsBundle\Models\DaoNews
+        arguments: ["@doctrine.orm.entity_manager"]

@@ -98,9 +98,7 @@ class NewsController extends Controller {
             //en gros on se retrouve avec un fork de notre formulaire en local ;) 
             $f->handleRequest($request);            
             //Partie persistance des données ou l'on sauvegarde notre news en base de données
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($niouse);
-            $em->flush();
+            $this->container->get("news.dao")->save($niouse);
             //J'avoue n'avoir implementer aucun test pour m'assurer de la validité des données en database
             //quoi qu'il en soit après avoir ajouter une news on appele la methode qui va nous afficher la liste des news
             //Bien entendu j'utilise les alias pour le routage ;) 
