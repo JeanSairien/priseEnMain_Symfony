@@ -97,4 +97,19 @@ class NewsController extends Controller {
         return $this->redirect($this->generateUrl('form'));
     }
 
+    /**
+     * Pour supprimer une news on recupère grace a la requete GET l'id de la news a supprimer
+     * on recuperer la news par son id via une requete en base de donnée pour effectuer la suppression
+     * qui prend en parametre un objet News 
+     * On aurai bien sur pu effectuer l'operation de recuperation de l'entitée par son id dans
+     * l'implémentation de la methode delete de notre dao... 
+     * qui nous aurait permis d'avoir la ligne en commentaire
+     * @Route("/news/remove/{id}",name="delete")
+     * @param type $id
+     */
+    public function deleteNews($id){
+        //$this->container->get("news.dao")->delete($id); // si on avait choisi de faire le get dans la methode delete du dao
+        $this->container->get("news.dao")->delete($this->container->get("news.dao")->get($id));
+        return $this->redirect($this->generateUrl('news'));
+    }
 }

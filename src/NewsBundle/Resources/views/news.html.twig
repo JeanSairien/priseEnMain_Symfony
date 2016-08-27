@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Doctyrine News - liste</title>
-             <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" type="text/css" media="all" />
+             <link rel="stylesheet" href="{{ asset('bundles/vendors/bootstrap/css/bootstrap.css') }}" type="text/css" media="all" />
+             <link rel="stylesheet" href="{{ asset('bundles/css/style.css') }}" type="text/css" media="all" />
     </head>
     <body>
         {# 
@@ -13,13 +14,23 @@
             on affiche pour chaque passage dans la boucle les propriétés
         
         #}
-        {%for nouvelle in news%}
-            <p>{{nouvelle.titre}}</p>
-            <p>{{nouvelle.sujet}}</p>
-            <p>{{nouvelle.date}}</p>
-        {% endfor %}
+        <div class="col-xs-8 col-xs-offset-2">
         {# J'ai mis un petit lien qui va appeler la methode qui va afficher la page d'ajout de news #}
-        <a href="{{path("valid")}}">ajouter une news </a>
+        <a href="{{path("valid")}}">ajouter une news </a>    
+        {%for nouvelle in news%}
+            
+           
+                <h1 class="col-xs-12">
+                    <span class="col-xs-6">{{nouvelle.date}}</span>
+                    <span class="col-xs-2">{{nouvelle.titre}}</span>
+                </h1>
+                <span class="col-xs-12 ">{{nouvelle.sujet}}{{nouvelle.auteur}}</span>
+                <span class="col-xs-12 col-xs-offset-0 fin"><a class="col-xs-push-5" href="{{path("delete",{"id":nouvelle.id})}}">supprimer</a></span>
+        
+            
+        {% endfor %}
+        
+        </div>
     </body>
 
 </html>
