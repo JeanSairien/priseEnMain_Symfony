@@ -2,10 +2,12 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Doctyrine News</title>
-             <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" type="text/css" media="all" />
+        <title>Doctyrine News - ajout / edit</title>
+             <link rel="stylesheet" href="{{ asset('bundles/vendors/bootstrap/css/bootstrap.css') }}" type="text/css" media="all" />
+             <link rel="stylesheet" href="{{ asset('bundles/css/style.css') }}" type="text/css" media="all" />
     </head>
     <body>
+        <div class="col-xs-4 col-xs-offset-4 text-center bg-success">
         {#
             formulaire pour l'ajout des news
             J'ai simplifié au max pour tenté d'etre le plus clair ;)
@@ -24,7 +26,7 @@
         {{form_rest(formNews)}}
         {# en gros on ferme la balise form #}
         {{form_end(formNews)}}
-        
+       </div> 
     </body>
 
 </html>

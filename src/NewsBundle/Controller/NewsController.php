@@ -2,7 +2,6 @@
 
 namespace NewsBundle\Controller;
 
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use NewsBundle\Entity\News;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -116,13 +115,16 @@ class NewsController extends Controller {
     /**
      * En gros c'est la même chose que lorsque qu'on demande la vue d'ajout de news
      * a part que là on recupere la news en DB grace a l'id passé dans l'URL
+     * Ici nous utilisons un mecanisme de doctrine plutot sympa le paramConverter
+     * En gros en rajoutant en plus de l'id un param avec le type de l'objet
+     * doctrine va faire le find tout seul... 
      * @Route("/news/edit/{id}",name="edit")
      * @Template("NewsBundle::addNews.html.twig")
      * @param type $id
      */
-    public function editNews($id){
-        //on recupère la news
-        $niouse = $this->container->get("news.dao")->get($id);
+    public function editNews($id,News $niouse){
+        //doctrine fait tout seul le find et affecte notre instance $niouse
+        //$niouse = $this->container->get("news.dao")->get($id);
         //on lie un formulaire avec l'objet créé
         $formBuilder = $this->createFormBuilder($niouse);
         //chaque champs du formulaire sera "lié" a notre classe
