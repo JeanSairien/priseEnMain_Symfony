@@ -27,3 +27,19 @@ Points abordés :
     * Ajout des services et pourquoi   
     * Notions de binding (pour lancer la branche suivante) avec le "shadow" formulaire  
     * Overide de méthodes / Dépréciation   
+
+#Branch [Mise_au_propre](https://github.com/loicAtSimplon/priseEnMain_Symfony/tree/Mise_au_propre)  
+
+On met un peu au propre l'application en utilisant les bon champs,  
+en faisant les bonnes verifications, en passant du temps sur le formulaire via twig  
+et en élaguant un peu le code coté controlleur.
+
+Points abordés :  
+  * Review de code  
+  * Elagage de code  
+  * Choix des champs  
+  * Schema Update  
+  * |raw('html') avec twig
+  * Validation des données (back)  
+  * Verification des données (front)  
+  * Jeux avec les dates
