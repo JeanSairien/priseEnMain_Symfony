@@ -28,6 +28,8 @@ Points abordés :
   * Notions de binding (pour lancer la branche suivante) avec le "shadow" formulaire  
   * Overide de méthodes / Dépréciation   
 
+---
+
 #Branch [Mise_au_propre](https://github.com/loicAtSimplon/priseEnMain_Symfony/tree/Mise_au_propre)  
 
 On met un peu au propre l'application en utilisant les bon champs,  
