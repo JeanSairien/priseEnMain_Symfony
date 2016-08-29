@@ -3,30 +3,22 @@
     <head>
         <meta charset="utf-8">
         <title>Doctyrine News - ajout / edit</title>
-             <link rel="stylesheet" href="{{ asset('bundles/vendors/bootstrap/css/bootstrap.css') }}" type="text/css" media="all" />
-             <link rel="stylesheet" href="{{ asset('bundles/css/style.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/vendors/bootstrap/css/bootstrap.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/css/style.css') }}" type="text/css" media="all" />
     </head>
     <body>
-        <div class="col-xs-4 col-xs-offset-4 text-center bg-success">
-        {#
-            formulaire pour l'ajout des news
-            J'ai simplifié au max pour tenté d'etre le plus clair ;)
-            Bien sur dans ce template on a renvoyé le formulaire que nous avions créé dans la methode formNews()
-            
-        #}
-        {#{{form(formNews)}}#}
-        
-        {# 
-            cette methode crée la balise form , on decide que dès qu'on valide le formulaire on appele la fonction 
-            addNews() par son alias 'valid' 
-        
-        #}
-        {{form_start(formNews,{'attr':{'action':path('valid')}})}}
-        {# ici on afiche tous les champs qui restent a afficher #}
-        {{form_rest(formNews)}}
-        {# en gros on ferme la balise form #}
-        {{form_end(formNews)}}
-       </div> 
+
+        <div class="col-xs-4 col-xs-offset-4 text-center bg-success ">
+
+            {{form_start(formNews,{'attr':{'action':path('valid')}})}}
+                {{ form_errors(formNews) }}
+                {{form_row(formNews.date,{'attr':{'class':'bg-danger'}})}}
+                {{form_row(formNews.titre)}}
+                {{form_row(formNews.sujet)}}
+                {{form_row(formNews.auteur)}}
+                {{form_row(formNews.save)}}
+            {{form_end(formNews)}}
+        </div> 
     </body>
 
 </html>

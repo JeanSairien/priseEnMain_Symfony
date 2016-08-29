@@ -7,7 +7,6 @@ use NewsBundle\Models\FormType\NewsFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 /*
@@ -30,7 +29,10 @@ class NewsController extends Controller {
      * @Template("NewsBundle::news.html.twig")
      */
     public function getNews() {
+//        $repository = $this->getDoctrine()->getRepository('NewsBundle:News');
+        
         //on jete notre liste de news vers la vue pour les afficher (notre clé pour twig est donc : news)
+//        return array('news' => $repository->findByTitre("demain"));
         return array('news' => $this->container->get("news.dao")->get());
     }
 
@@ -42,25 +44,8 @@ class NewsController extends Controller {
      * @param Request $request
      */
     public function formNews(Request $request) {
-        /*
-          //on créé un objet vide
-          $niouse = new News();
-          //on lie un formulaire avec l'objet créé
-
-          $formBuilder = $this->createFormBuilder($niouse);
-          //chaque champs du formulaire sera "lié" a notre classe
-          $formBuilder->add("date");
-          $formBuilder->add("titre");
-          $formBuilder->add("sujet");
-          $formBuilder->add("auteur");
-          //petit bouton submit pour valider le formulaire
-          $formBuilder->add("save", SubmitType::class);
-          //après avoir "fabriqué" (build) le formulaire on le génère....
-          $f = $formBuilder->getForm();
-         */
         //création du formulaire PROPRE :) - remplace les 8 lignes de code precedentes
         $f = $this->createForm(NewsFormType::class, new News());
-
         //on renvoie le formulaire dans la vue
         return array("formNews" => $f->createView());
     }
@@ -75,17 +60,7 @@ class NewsController extends Controller {
      */
     public function addNews(Request $request) {
         //nouvelle instance
-        $niouse = new News();
-        /*
-          //liaison de l'objet avec le formulaire temporaire
-          //creation du formulaire tampon
-          $formBuilder = $this->createFormBuilder($niouse);
-          $formBuilder->add("date");
-          $formBuilder->add("titre");
-          $formBuilder->add("sujet");
-          $formBuilder->add("auteur");
-          $f = $formBuilder->getForm();
-         */
+        $niouse = new News();        
         //Pareil on a encore besoin du formulaire pour les news ? 
         //Par contre on a besoin d'une réference vers une entité On garde l'instancation
         $f = $this->createForm(NewsFormType::class, $niouse);
@@ -135,25 +110,13 @@ class NewsController extends Controller {
      * @param type $id
      */
     public function editNews($id, News $niouse) {
-        /*
-          //doctrine fait tout seul le find et affecte notre instance $niouse
-          //$niouse = $this->container->get("news.dao")->get($id);
-          //on lie un formulaire avec l'objet créé
-          $formBuilder = $this->createFormBuilder($niouse);
-          //chaque champs du formulaire sera "lié" a notre classe
-          $formBuilder->add("date");
-          $formBuilder->add("titre");
-          $formBuilder->add("sujet");
-          $formBuilder->add("auteur");
-          //petit bouton submit pour valider le formulaire
-          $formBuilder->add("save", SubmitType::class);
-          //après avoir "fabriqué" (build) le formulaire on le génère....
-          $f = $formBuilder->getForm();
-         */
+       
         //On a eu besoin d'utiliser le formulaire dans 3 methodes... gain de place gain de temps gain de perf gain de riz
         $f = $this->createForm(NewsFormType::class, $niouse);
         //on renvoie le formulaire dans la vue
         return array("formNews" => $f->createView());
     }
+    
+
 
 }
