@@ -84,7 +84,8 @@ class NewsController extends Controller {
             //en gros on se retrouve avec un fork de notre formulaire en local ;) 
             $f->handleRequest($request);            
             //Partie persistance des données ou l'on sauvegarde notre news en base de données
-            $this->container->get("news.dao")->save($niouse);
+            $this->container->get("news.dao")->save($niouse);            
+            
             //J'avoue n'avoir implementer aucun test pour m'assurer de la validité des données en database
             //quoi qu'il en soit après avoir ajouter une news on appele la methode qui va nous afficher la liste des news
             //Bien entendu j'utilise les alias pour le routage ;) 
@@ -137,6 +138,40 @@ class NewsController extends Controller {
         //après avoir "fabriqué" (build) le formulaire on le génère....
         $f = $formBuilder->getForm();
         //on renvoie le formulaire dans la vue
-        return array("formNews" => $f->createView());    
+        return array("formNews" => $f->createView(),"id"=>$id);    
+    }
+    /**
+     * 
+     * @Route("/news/update/{id}",name="update")
+     * 
+     */
+    public function updateNews(Request $request,$id){
+            //nouvelle instance
+        $niouse = $this->container->get("news.dao")->get($id);
+        //liaison de l'objet avec le formulaire temporaire
+        //creation du formulaire tampon
+        $formBuilder = $this->createFormBuilder($niouse);
+        $formBuilder->add("date");
+        $formBuilder->add("titre");
+        $formBuilder->add("sujet");
+        $formBuilder->add("auteur");
+        $f = $formBuilder->getForm();
+
+        //on fait quand meme une verif pour s'assurer d'avoir eu un POST comme requete http
+        if ($request->getMethod() == 'POST') {
+            //on lie le formulaire temporaire avec les valeurs de la requete de type post
+            //en gros on se retrouve avec un fork de notre formulaire en local ;) 
+            $f->handleRequest($request);            
+            //Partie persistance des données ou l'on sauvegarde notre news en base de données
+            $this->container->get("news.dao")->update($niouse);
+            //J'avoue n'avoir implementer aucun test pour m'assurer de la validité des données en database
+            //quoi qu'il en soit après avoir ajouter une news on appele la methode qui va nous afficher la liste des news
+            //Bien entendu j'utilise les alias pour le routage ;) 
+            //faire un redirect vers getNews();
+            return $this->redirect($this->generateUrl('news'));
+        }
+        //si jamais le post a pas marché je reviens vers l'edition
+        //faire un redirect sur ajout de news
+        return $this->redirect($this->generateUrl('form'));    
     }
 }

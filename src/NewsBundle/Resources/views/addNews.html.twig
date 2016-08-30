@@ -21,7 +21,12 @@
             addNews() par son alias 'valid' 
         
         #}
-        {{form_start(formNews,{'attr':{'action':path('valid')}})}}
+        {%if id is defined %}
+                {{form_start(formNews,{'attr':{'action':path('update',{'id':id})}})}}
+            {% else %}
+                {{form_start(formNews,{'attr':{'action':path('valid')}})}}
+            {% endif %}
+        
         {# ici on afiche tous les champs qui restent a afficher #}
         {{form_rest(formNews)}}
         {# en gros on ferme la balise form #}
